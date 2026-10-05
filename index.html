@@ -1112,10 +1112,12 @@ async function sendData() {
         }
 
         showMessage(
-            '送信しました。ありがとうございます。'
+            '送信しました。ありがとうございます。' +
+            '修正がある場合は、内容を直してもう一度送信してください（上書きされます）。'
         );
 
-        button.textContent = '送信済み';
+        button.disabled = false;
+        button.textContent = '送信する';
 
         // resetForm();
 
