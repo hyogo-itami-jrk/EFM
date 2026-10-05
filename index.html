@@ -721,9 +721,10 @@
 ========================= */
 
 function numberOnly(input) {
-    input.value = input.value.replace(/[^0-9]/g, '');
+    input.value = input.value
+        .replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
+        .replace(/[^0-9]/g, '');
 }
-
 
 /* =========================
    数値を取得
@@ -1094,41 +1095,29 @@ async function sendData() {
         getNumber('input33')
     );
 
-
     try {
 
-        await fetch(
+        const response = await fetch(
             SCRIPT_URL,
             {
                 method: 'POST',
-                mode: 'no-cors',
                 body: data
             }
         );
 
+        const result = await response.json();
 
-        /*
-           Google Apps Scriptへの送信処理が完了したら
-           送信完了として表示
-        */
+        if (!result.ok) {
+            throw new Error(result.error || '保存に失敗しました');
+        }
 
         showMessage(
             '送信しました。ありがとうございます。'
         );
 
-
         button.textContent = '送信済み';
 
-
-        /*
-           送信後、入力欄を空にする場合は
-           下の resetForm(); の // を外します。
-           
-           今は確認のため、入力内容を残します。
-        */
-
         // resetForm();
-
 
     } catch (error) {
 
