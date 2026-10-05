@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ethics Fan Meeting2026、秋。参加者集計表</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Yu Gothic", "Meiryo", sans-serif;
+        margin: 0;
+        padding: 25px 15px;
+        background: #ffffff;
+        color: #222;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .title {
+        font-size: 18px;
+        margin-left: 50px;
+        margin-bottom: 5px;
+    }
+
+    .top-area {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 45px 25px;
+        gap: 20px;
+    }
+
+    .top-item {
+        display: flex;
+        align-items: center;
+    }
+
+    .top-label {
+        border: 1px solid #777;
+        padding: 5px 8px;
+        min-width: 130px;
+        background: #fff;
+    }
+
+    .top-input {
+        width: 150px;
+        padding: 5px 8px;
+        border: 1px solid #777;
+        background: #eee;
+        font-size: 16px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+
+    th,
+    td {
+        border: 1px solid #555;
+        text-align: center;
+        padding: 4px;
+    }
+
+    th {
+        font-weight: normal;
+        background: #fff;
+    }
+
+    .age {
+        width: 50px;
+    }
+
+    .input-col {
+        width: 14%;
+    }
+
+    .total-col {
+        width: 15%;
+    }
+
+    .input-number {
+        width: 95%;
+        height: 32px;
+        padding: 3px;
+        border: 1px solid #aaa;
+        background: #eee;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .input-number:focus,
+    .top-input:focus {
+        outline: 2px solid #777;
+        background: #fff;
+    }
+
+    .total-cell {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .sum-row {
+        font-weight: bold;
+        background: #f8f8f8;
+    }
+
+    .message {
+        min-height: 25px;
+        margin-top: 15px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .error {
+        color: #c00;
+        font-weight: bold;
+    }
+
+    .button-area {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    button {
+        padding: 11px 30px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        background: #333;
+        color: white;
+        cursor: pointer;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    .note {
+        margin-top: 15px;
+        text-align: center;
+        font-size: 13px;
+        color: #666;
+    }
+
+
+    /* スマートフォン用 */
+    @media (max-width: 700px) {
+
+        body {
+            padding: 15px 5px;
+        }
+
+        .title {
+            margin-left: 5px;
+            font-size: 16px;
+        }
+
+        .top-area {
+            margin: 0 5px 20px;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 8px;
+        }
+
+        .top-item {
+            width: 100%;
+        }
+
+        .top-label {
+            min-width: 120px;
+        }
+
+        .top-input {
+            flex: 1;
+            width: auto;
+        }
+
+        table {
+            font-size: 13px;
+        }
+
+        th,
+        td {
+            padding: 3px 1px;
+        }
+
+        .age {
+            width: 42px;
+        }
+
+        .input-number {
+            height: 32px;
+            font-size: 15px;
+        }
+
+        .total-cell {
+            font-size: 14px;
+        }
+    }
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <div class="title">
+        Ethics Fan Meeting2026、秋。参加者集計表
+    </div>
+
+
+    <!-- 上部入力 -->
+    <div class="top-area">
+
+        <div class="top-item">
+            <div class="top-label">ラウンジ名</div>
+
+            <!-- 入力0 -->
+            <input
+                type="text"
+                id="input0"
+                class="top-input"
+                placeholder="入力してください"
+            >
+        </div>
+
+
+        <div class="top-item">
+            <div class="top-label">未会友参加者数</div>
+
+            <!-- 入力33 -->
+            <input
+                type="text"
+                id="input33"
+                class="top-input"
+                inputmode="numeric"
+                autocomplete="off"
+                oninput="numberOnly(this); calculate();"
+            >
+        </div>
+
+    </div>
+
+
+    <!-- メイン表 -->
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th rowspan="2" class="age"></th>
+
+                <th colspan="2">
+                    男性
+                </th>
+
+                <th colspan="2">
+                    女性
+                </th>
+
+                <th colspan="2">
+                    年代別合計
+                </th>
+            </tr>
+
+            <tr>
+                <th class="input-col">参加者</th>
+                <th class="input-col">うち初</th>
+
+                <th class="input-col">参加者</th>
+                <th class="input-col">うち初</th>
+
+                <th class="total-col">参加者</th>
+                <th class="total-col">うち初</th>
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+
+            <!-- 10代 -->
+
+            <tr>
+                <td>10代</td>
+
+                <td>
+                    <input
+                        type="text"
+                        id="input1"
+                        class="input-number participant"
+                        data-first="input2"
+                        inputmode="numeric"
+                        oninput="numberOnly(this); updateFirstLimit('input1','input2'); calculate();"
+                    >
+                </td>
+
+                <td>
+                    <input
+                        type="text"
+                        id="input2"
+                        class="input-number first"
+                        data-participant="input1"
+                        inputmode="numeric"
+                        oninput="numberOnly(this); validateFirst(this); calculate();"
+                    >
+                </td>
+
+                <td>
+                    <input
+                        type="text"
+                        id="input3"
+                        class="input-number participant"
+                        data-first="input4"
+                        inputmode="numeric"
+                        oninput="numberOnly(this); updateFirstLimit('input3','input4'); calculate();"
+                    >
+                </td>
+
+                <td>
+                    <input
+                        type="text"
+                        id="input4"
+                        class="input-number first"
+                        data-participant="input3"
+                        inputmode="numeric"
+                        oninput="numberOnly(this); validateFirst(this); calculate();"
+                    >
+                </td>
+
+                <td class="total-cell" id="totalA">0</td>
+                <td class="total-cell" id="totala">0</td>
+            </tr>
+
+
+            <!-- 20代 -->
+
+            <tr>
+                <td>20代</td>
+
+                <td>
+                    <input type="text" id="input5"
+                        class="input-number participant"
+                        oninput="numberOnly(this); updateFirstLimit('input5','input6'); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input6"
+                        class="input-number first"
+                        data-participant="input5"
+                        oninput="numberOnly(this); validateFirst(this); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input7"
+                        class="input-number participant"
+                        oninput="numberOnly(this); updateFirstLimit('input7','input8'); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input8"
+                        class="input-number first"
+                        data-participant="input7"
+                        oninput="numberOnly(this); validateFirst(this); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td class="total-cell" id="totalB">0</td>
+                <td class="total-cell" id="totalb">0</td>
+            </tr>
+
+
+            <!-- 30代 -->
+
+            <tr>
+                <td>30代</td>
+
+                <td>
+                    <input type="text" id="input9"
+                        class="input-number participant"
+                        oninput="numberOnly(this); updateFirstLimit('input9','input10'); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input10"
+                        class="input-number first"
+                        data-participant="input9"
+                        oninput="numberOnly(this); validateFirst(this); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input11"
+                        class="input-number participant"
+                        oninput="numberOnly(this); updateFirstLimit('input11','input12'); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input12"
+                        class="input-number first"
+                        data-participant="input11"
+                        oninput="numberOnly(this); validateFirst(this); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td class="total-cell" id="totalC">0</td>
+                <td class="total-cell" id="totalc">0</td>
+            </tr>
+
+
+            <!-- 40代 -->
+
+            <tr>
+                <td>40代</td>
+
+                <td>
+                    <input type="text" id="input13"
+                        class="input-number participant"
+                        oninput="numberOnly(this); updateFirstLimit('input13','input14'); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input14"
+                        class="input-number first"
+                        data-participant="input13"
+                        oninput="numberOnly(this); validateFirst(this); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input15"
+                        class="input-number participant"
+                        oninput="numberOnly(this); updateFirstLimit('input15','input16'); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input16"
+                        class="input-number first"
+                        data-participant="input15"
+                        oninput="numberOnly(this); validateFirst(this); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td class="total-cell" id="totalD">0</td>
+                <td class="total-cell" id="totald">0</td>
+            </tr>
+
+
+            <!-- 50代 -->
+
+            <tr>
+                <td>50代</td>
+
+                <td>
+                    <input type="text" id="input17"
+                        class="input-number participant"
+                        oninput="numberOnly(this); updateFirstLimit('input17','input18'); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input18"
+                        class="input-number first"
+                        data-participant="input17"
+                        oninput="numberOnly(this); validateFirst(this); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input19"
+                        class="input-number participant"
+                        oninput="numberOnly(this); updateFirstLimit('input19','input20'); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input20"
+                        class="input-number first"
+                        data-participant="input19"
+                        oninput="numberOnly(this); validateFirst(this); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td class="total-cell" id="totalE">0</td>
+                <td class="total-cell" id="totale">0</td>
+            </tr>
+
+
+            <!-- 60代 -->
+
+            <tr>
+                <td>60代</td>
+
+                <td>
+                    <input type="text" id="input21"
+                        class="input-number participant"
+                        oninput="numberOnly(this); updateFirstLimit('input21','input22'); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input22"
+                        class="input-number first"
+                        data-participant="input21"
+                        oninput="numberOnly(this); validateFirst(this); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input23"
+                        class="input-number participant"
+                        oninput="numberOnly(this); updateFirstLimit('input23','input24'); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input24"
+                        class="input-number first"
+                        data-participant="input23"
+                        oninput="numberOnly(this); validateFirst(this); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td class="total-cell" id="totalF">0</td>
+                <td class="total-cell" id="totalf">0</td>
+            </tr>
+
+
+            <!-- 70代 -->
+
+            <tr>
+                <td>70代</td>
+
+                <td>
+                    <input type="text" id="input25"
+                        class="input-number participant"
+                        oninput="numberOnly(this); updateFirstLimit('input25','input26'); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input26"
+                        class="input-number first"
+                        data-participant="input25"
+                        oninput="numberOnly(this); validateFirst(this); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input27"
+                        class="input-number participant"
+                        oninput="numberOnly(this); updateFirstLimit('input27','input28'); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input28"
+                        class="input-number first"
+                        data-participant="input27"
+                        oninput="numberOnly(this); validateFirst(this); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td class="total-cell" id="totalG">0</td>
+                <td class="total-cell" id="totalg">0</td>
+            </tr>
+
+
+            <!-- 80代 -->
+
+            <tr>
+                <td>80代</td>
+
+                <td>
+                    <input type="text" id="input29"
+                        class="input-number participant"
+                        oninput="numberOnly(this); updateFirstLimit('input29','input30'); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input30"
+                        class="input-number first"
+                        data-participant="input29"
+                        oninput="numberOnly(this); validateFirst(this); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input31"
+                        class="input-number participant"
+                        oninput="numberOnly(this); updateFirstLimit('input31','input32'); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td>
+                    <input type="text" id="input32"
+                        class="input-number first"
+                        data-participant="input31"
+                        oninput="numberOnly(this); validateFirst(this); calculate();"
+                        inputmode="numeric">
+                </td>
+
+                <td class="total-cell" id="totalH">0</td>
+                <td class="total-cell" id="totalh">0</td>
+            </tr>
+
+
+            <!-- 全体合計 -->
+
+            <tr class="sum-row">
+
+                <td>合計</td>
+
+                <td id="maleTotal">0</td>
+                <td id="maleFirstTotal">0</td>
+
+                <td id="femaleTotal">0</td>
+                <td id="femaleFirstTotal">0</td>
+
+                <td id="grandTotal">0</td>
+                <td id="grandFirstTotal">0</td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+    <div id="message" class="message"></div>
+
+
+    <div class="button-area">
+        <button type="button" onclick="checkForm()">
+            入力内容を確認する
+        </button>
+    </div>
+
+    <div class="note">
+        ※人数欄は半角数字で入力してください。<br>
+        ※「うち初」は「参加者」の人数を超えて入力できません。
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   半角数字だけにする
+========================= */
+
+function numberOnly(input) {
+    input.value = input.value.replace(/[^0-9]/g, '');
+}
+
+
+/* =========================
+   数値を取得
+========================= */
+
+function getNumber(id) {
+
+    const value = document.getElementById(id).value;
+
+    if (value === '') {
+        return 0;
+    }
+
+    return Number(value);
+}
+
+
+/* =========================
+   「うち初」の人数制限
+========================= */
+
+function updateFirstLimit(participantId, firstId) {
+
+    const participant = getNumber(participantId);
+    const firstInput = document.getElementById(firstId);
+
+    /*
+       参加者数を超えていた場合、
+       参加者数まで自動的に下げる
+    */
+
+    if (firstInput.value !== '') {
+
+        const first = Number(firstInput.value);
+
+        if (first > participant) {
+            firstInput.value = participant;
+        }
+    }
+}
+
+
+/* =========================
+   「うち初」を入力したときのチェック
+========================= */
+
+function validateFirst(input) {
+
+    const participantId = input.dataset.participant;
+
+    const participant = getNumber(participantId);
+
+    if (input.value === '') {
+        return;
+    }
+
+    const first = Number(input.value);
+
+    if (first > participant) {
+        input.value = participant;
+
+        showMessage(
+            '「うち初」の人数は「参加者」の人数を超えることはできません。',
+            true
+        );
+    }
+}
+
+
+/* =========================
+   メッセージ表示
+========================= */
+
+function showMessage(text, error = false) {
+
+    const message = document.getElementById('message');
+
+    message.textContent = text;
+
+    if (error) {
+        message.className = 'message error';
+    } else {
+        message.className = 'message';
+    }
+}
+
+
+/* =========================
+   合計計算
+========================= */
+
+function calculate() {
+
+    /*
+        10代
+        男性：1、2
+        女性：3、4
+    */
+
+    const A = getNumber('input1') + getNumber('input3');
+    const a = getNumber('input2') + getNumber('input4');
+
+
+    /*
+        20代
+    */
+
+    const B = getNumber('input5') + getNumber('input7');
+    const b = getNumber('input6') + getNumber('input8');
+
+
+    /*
+        30代
+    */
+
+    const C = getNumber('input9') + getNumber('input11');
+    const c = getNumber('input10') + getNumber('input12');
+
+
+    /*
+        40代
+    */
+
+    const D = getNumber('input13') + getNumber('input15');
+    const d = getNumber('input14') + getNumber('input16');
+
+
+    /*
+        50代
+    */
+
+    const E = getNumber('input17') + getNumber('input19');
+    const e = getNumber('input18') + getNumber('input20');
+
+
+    /*
+        60代
+    */
+
+    const F = getNumber('input21') + getNumber('input23');
+    const f = getNumber('input22') + getNumber('input24');
+
+
+    /*
+        70代
+    */
+
+    const G = getNumber('input25') + getNumber('input27');
+    const g = getNumber('input26') + getNumber('input28');
+
+
+    /*
+        80代
+    */
+
+    const H = getNumber('input29') + getNumber('input31');
+    const h = getNumber('input30') + getNumber('input32');
+
+
+    /* 年代別合計を表示 */
+
+    document.getElementById('totalA').textContent = A;
+    document.getElementById('totala').textContent = a;
+
+    document.getElementById('totalB').textContent = B;
+    document.getElementById('totalb').textContent = b;
+
+    document.getElementById('totalC').textContent = C;
+    document.getElementById('totalc').textContent = c;
+
+    document.getElementById('totalD').textContent = D;
+    document.getElementById('totald').textContent = d;
+
+    document.getElementById('totalE').textContent = E;
+    document.getElementById('totale').textContent = e;
+
+    document.getElementById('totalF').textContent = F;
+    document.getElementById('totalf').textContent = f;
+
+    document.getElementById('totalG').textContent = G;
+    document.getElementById('totalg').textContent = g;
+
+    document.getElementById('totalH').textContent = H;
+    document.getElementById('totalh').textContent = h;
+
+
+    /* 男性合計 */
+
+    const maleTotal =
+        getNumber('input1') +
+        getNumber('input5') +
+        getNumber('input9') +
+        getNumber('input13') +
+        getNumber('input17') +
+        getNumber('input21') +
+        getNumber('input25') +
+        getNumber('input29');
+
+
+    /* 男性初参加合計 */
+
+    const maleFirstTotal =
+        getNumber('input2') +
+        getNumber('input6') +
+        getNumber('input10') +
+        getNumber('input14') +
+        getNumber('input18') +
+        getNumber('input22') +
+        getNumber('input26') +
+        getNumber('input30');
+
+
+    /* 女性合計 */
+
+    const femaleTotal =
+        getNumber('input3') +
+        getNumber('input7') +
+        getNumber('input11') +
+        getNumber('input15') +
+        getNumber('input19') +
+        getNumber('input23') +
+        getNumber('input27') +
+        getNumber('input31');
+
+
+    /* 女性初参加合計 */
+
+    const femaleFirstTotal =
+        getNumber('input4') +
+        getNumber('input8') +
+        getNumber('input12') +
+        getNumber('input16') +
+        getNumber('input20') +
+        getNumber('input24') +
+        getNumber('input28') +
+        getNumber('input32');
+
+
+    /* 全体 */
+
+    const grandTotal = maleTotal + femaleTotal;
+
+    const grandFirstTotal =
+        maleFirstTotal + femaleFirstTotal;
+
+
+    /* 表示 */
+
+    document.getElementById('maleTotal').textContent = maleTotal;
+    document.getElementById('maleFirstTotal').textContent = maleFirstTotal;
+
+    document.getElementById('femaleTotal').textContent = femaleTotal;
+    document.getElementById('femaleFirstTotal').textContent = femaleFirstTotal;
+
+    document.getElementById('grandTotal').textContent = grandTotal;
+    document.getElementById('grandFirstTotal').textContent = grandFirstTotal;
+}
+
+
+/* =========================
+   入力内容確認
+========================= */
+
+function checkForm() {
+
+    const loungeName =
+        document.getElementById('input0').value.trim();
+
+    if (loungeName === '') {
+
+        showMessage(
+            'ラウンジ名を入力してください。',
+            true
+        );
+
+        document.getElementById('input0').focus();
+
+        return;
+    }
+
+
+    /*
+       念のため、全「うち初」を再チェック
+    */
+
+    const pairs = [
+        ['input1', 'input2'],
+        ['input3', 'input4'],
+        ['input5', 'input6'],
+        ['input7', 'input8'],
+        ['input9', 'input10'],
+        ['input11', 'input12'],
+        ['input13', 'input14'],
+        ['input15', 'input16'],
+        ['input17', 'input18'],
+        ['input19', 'input20'],
+        ['input21', 'input22'],
+        ['input23', 'input24'],
+        ['input25', 'input26'],
+        ['input27', 'input28'],
+        ['input29', 'input30'],
+        ['input31', 'input32']
+    ];
+
+
+    for (const pair of pairs) {
+
+        const participant = getNumber(pair[0]);
+        const first = getNumber(pair[1]);
+
+        if (first > participant) {
+
+            showMessage(
+                '「うち初」の人数が「参加者」の人数を超えています。',
+                true
+            );
+
+            document.getElementById(pair[1]).focus();
+
+            return;
+        }
+    }
+
+
+    calculate();
+
+
+    const total =
+        getNumber('input1') +
+        getNumber('input3') +
+        getNumber('input5') +
+        getNumber('input7') +
+        getNumber('input9') +
+        getNumber('input11') +
+        getNumber('input13') +
+        getNumber('input15') +
+        getNumber('input17') +
+        getNumber('input19') +
+        getNumber('input21') +
+        getNumber('input23') +
+        getNumber('input25') +
+        getNumber('input27') +
+        getNumber('input29') +
+        getNumber('input31');
+
+
+    const firstTotal =
+        getNumber('input2') +
+        getNumber('input4') +
+        getNumber('input6') +
+        getNumber('input8') +
+        getNumber('input10') +
+        getNumber('input12') +
+        getNumber('input14') +
+        getNumber('input16') +
+        getNumber('input18') +
+        getNumber('input20') +
+        getNumber('input22') +
+        getNumber('input24') +
+        getNumber('input26') +
+        getNumber('input28') +
+        getNumber('input30') +
+        getNumber('input32');
+
+
+    showMessage(
+        '入力内容を確認しました。参加者 ' +
+        total +
+        '人、うち初参加 ' +
+        firstTotal +
+        '人です。'
+    );
+}
+
+
+/* 初期表示 */
+
+calculate();
+
+</script>
+
+</body>
+</html>
