@@ -652,7 +652,7 @@
 
 
     <div class="button-area">
-        <button type="button" onclick="checkForm()">
+        <button type="button" onclick="sendData()">
             送信する
         </button>
     </div>
@@ -1115,100 +1115,6 @@ function resetForm() {
     calculate();
 }
 
-
-
-    /*
-       念のため、全「うち初」を再チェック
-    */
-
-    const pairs = [
-        ['input1', 'input2'],
-        ['input3', 'input4'],
-        ['input5', 'input6'],
-        ['input7', 'input8'],
-        ['input9', 'input10'],
-        ['input11', 'input12'],
-        ['input13', 'input14'],
-        ['input15', 'input16'],
-        ['input17', 'input18'],
-        ['input19', 'input20'],
-        ['input21', 'input22'],
-        ['input23', 'input24'],
-        ['input25', 'input26'],
-        ['input27', 'input28'],
-        ['input29', 'input30'],
-        ['input31', 'input32']
-    ];
-
-
-    for (const pair of pairs) {
-
-        const participant = getNumber(pair[0]);
-        const first = getNumber(pair[1]);
-
-        if (first > participant) {
-
-            showMessage(
-                '「うち初」の人数が「参加者」の人数を超えています。',
-                true
-            );
-
-            document.getElementById(pair[1]).focus();
-
-            return;
-        }
-    }
-
-
-    calculate();
-
-
-    const total =
-        getNumber('input1') +
-        getNumber('input3') +
-        getNumber('input5') +
-        getNumber('input7') +
-        getNumber('input9') +
-        getNumber('input11') +
-        getNumber('input13') +
-        getNumber('input15') +
-        getNumber('input17') +
-        getNumber('input19') +
-        getNumber('input21') +
-        getNumber('input23') +
-        getNumber('input25') +
-        getNumber('input27') +
-        getNumber('input29') +
-        getNumber('input31');
-
-
-    const firstTotal =
-        getNumber('input2') +
-        getNumber('input4') +
-        getNumber('input6') +
-        getNumber('input8') +
-        getNumber('input10') +
-        getNumber('input12') +
-        getNumber('input14') +
-        getNumber('input16') +
-        getNumber('input18') +
-        getNumber('input20') +
-        getNumber('input22') +
-        getNumber('input24') +
-        getNumber('input26') +
-        getNumber('input28') +
-        getNumber('input30') +
-        getNumber('input32');
-
-
-    showMessage(
-        '入力内容を確認しました。参加者 ' +
-        total +
-        '人、うち初参加 ' +
-        firstTotal +
-        '人です。'
-    );
-}
 
 
 /* 初期表示 */
