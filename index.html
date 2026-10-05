@@ -653,7 +653,7 @@
 
     <div class="button-area">
         <button type="button" onclick="checkForm()">
-            入力内容を確認する
+            送信する
         </button>
     </div>
 
@@ -933,15 +933,20 @@ function calculate() {
     document.getElementById('grandFirstTotal').textContent = grandFirstTotal;
 }
 
-
 /* =========================
-   入力内容確認
+   Googleスプレッドシートへ送信
 ========================= */
 
-function checkForm() {
+const SCRIPT_URL =
+    'https://script.google.com/macros/s/AKfycbxUG2UN9SO9mO1ob4TfSieZElg5iFmZQC68jVlTThj-sERls2Sy1nPMUx84U3fY_TzN/exec';
+
+
+async function sendData() {
 
     const loungeName =
         document.getElementById('input0').value.trim();
+
+    /* ラウンジ名は必須 */
 
     if (loungeName === '') {
 
@@ -954,6 +959,162 @@ function checkForm() {
 
         return;
     }
+
+
+    /* 「うち初」≦「参加者」を確認 */
+
+    const pairs = [
+        ['input1', 'input2'],
+        ['input3', 'input4'],
+        ['input5', 'input6'],
+        ['input7', 'input8'],
+        ['input9', 'input10'],
+        ['input11', 'input12'],
+        ['input13', 'input14'],
+        ['input15', 'input16'],
+        ['input17', 'input18'],
+        ['input19', 'input20'],
+        ['input21', 'input22'],
+        ['input23', 'input24'],
+        ['input25', 'input26'],
+        ['input27', 'input28'],
+        ['input29', 'input30'],
+        ['input31', 'input32']
+    ];
+
+
+    for (const pair of pairs) {
+
+        const participant = getNumber(pair[0]);
+        const first = getNumber(pair[1]);
+
+        if (first > participant) {
+
+            showMessage(
+                '「うち初」の人数が「参加者」の人数を超えています。',
+                true
+            );
+
+            document.getElementById(pair[1]).focus();
+
+            return;
+        }
+    }
+
+
+    /* ボタンを一時的に無効にする */
+
+    const button =
+        document.querySelector('.button-area button');
+
+    button.disabled = true;
+    button.textContent = '送信中…';
+
+
+    /*
+       Googleスプレッドシートへ送るデータ
+       
+       空欄の人数は「0」として保存します。
+    */
+
+    const data = new URLSearchParams();
+
+    /* 入力0：ラウンジ名 */
+
+    data.append(
+        'input0',
+        loungeName
+    );
+
+
+    /* 入力1～32：人数 */
+
+    for (let i = 1; i <= 32; i++) {
+
+        data.append(
+            'input' + i,
+            getNumber('input' + i)
+        );
+    }
+
+
+    /* 入力33：未会友参加者数 */
+
+    data.append(
+        'input33',
+        getNumber('input33')
+    );
+
+
+    try {
+
+        await fetch(
+            SCRIPT_URL,
+            {
+                method: 'POST',
+                mode: 'no-cors',
+                body: data
+            }
+        );
+
+
+        /*
+           Google Apps Scriptへの送信処理が完了したら
+           送信完了として表示
+        */
+
+        showMessage(
+            '送信しました。ありがとうございます。'
+        );
+
+
+        button.textContent = '送信済み';
+
+
+        /*
+           送信後、入力欄を空にする場合は
+           下の resetForm(); の // を外します。
+           
+           今は確認のため、入力内容を残します。
+        */
+
+        // resetForm();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+            '送信できませんでした。通信状態を確認してください。',
+            true
+        );
+
+        button.disabled = false;
+        button.textContent = '送信する';
+    }
+}
+
+
+/* =========================
+   フォームを空にする
+========================= */
+
+function resetForm() {
+
+    document.getElementById('input0').value = '';
+    document.getElementById('input33').value = '';
+
+    for (let i = 1; i <= 32; i++) {
+
+        document.getElementById(
+            'input' + i
+        ).value = '';
+    }
+
+    calculate();
+}
+
 
 
     /*
